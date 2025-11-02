@@ -15,8 +15,8 @@ def test_multiply():
    
 def test_divide():
     assert divide(10,2) == 5
-#     with pytest.raises(ValueError):
-#         divide(2,0)   
+    with pytest.raises(ValueError):
+        divide(2,0)   
 
 # def test_fail():
 #     assert add(10,2) == 5
