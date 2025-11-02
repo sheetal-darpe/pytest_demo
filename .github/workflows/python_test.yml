@@ -9,34 +9,38 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.10"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip 
-        pip install pytest 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-    - name: Run Pytest 
-      run: pytest -v 
-      deploy: 
-        needs: build_and_test 
-      runs-on: ubuntu-latest if: success() steps: 
-        
-    - name: Checkout repository 
-      uses: actions/checkout@v3 
-    
-    - name: Dummy deployment - Build artifacts 
-      run: echo "Building application package..." 
-    
-    - name: Dummy deployment - Uploading files 
-      run: echo "Uploading files to fake server..." 
-    
-    - name: Dummy deployment - Finishing up 
-      run: echo "Deployment complete!"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip 
+          pip install pytest
+
+      - name: Run Pytest
+        run: pytest -v
+
+  deploy:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    if: success()
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Dummy deployment - Build artifacts
+        run: echo "Building application package..."
+
+      - name: Dummy deployment - Uploading files
+        run: echo "Uploading files to fake server..."
+
+      - name: Dummy deployment - Finishing up
+        run: echo "Deployment complete ✅"
