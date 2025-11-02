@@ -18,6 +18,6 @@ def test_divide():
     with pytest.raises(ValueError):
         divide(2,0)   
 
-def test_fail():
-    assert add(10,2) == 5
+# def test_fail():
+#     assert add(10,2) == 5
      

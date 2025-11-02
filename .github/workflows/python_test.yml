@@ -2,9 +2,9 @@ name: CI/CD Dummy Deployment
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
   pull_request:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   build_and_test:
@@ -26,21 +26,3 @@ jobs:
 
       - name: Run Pytest
         run: pytest -v
-
-  deploy:
-    needs: build_and_test
-    runs-on: ubuntu-latest
-    if: success()
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Dummy deployment - Build artifacts
-        run: echo "Building application package..."
-
-      - name: Dummy deployment - Uploading files
-        run: echo "Uploading files to fake server..."
-
-      - name: Dummy deployment - Finishing up
-        run: echo "Deployment complete ✅"
